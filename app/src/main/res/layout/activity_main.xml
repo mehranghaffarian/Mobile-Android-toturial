@@ -4,85 +4,110 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/movieLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:id="@+id/movieLay">
+        android:layout_marginTop="50dp">
 
 
         <CheckBox
+            android:id="@+id/pop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:checked="false"
             android:text="Pop"
             android:textColor="#20bd08"
-            android:layout_marginLeft="70dp"
-            android:textSize="20sp"
-            android:checked="false"
-            android:id="@+id/pop"/>
+            android:textSize="20sp"/>
 
         <CheckBox
+            android:id="@+id/jazz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/pop"
+            android:checked="false"
             android:text="Jazz"
             android:textColor="#040991"
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp"
-            android:checked="false"
-            android:id="@+id/jazz"/>
+            android:textSize="20sp"/>
 
         <CheckBox
+            android:id="@+id/rock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rock"
-            android:layout_toRightOf="@+id/jazz"
-            android:textColor="#8c0606"
-            android:textSize="20sp"
             android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/jazz"
             android:checked="false"
-            android:id="@+id/rock"/>
+            android:text="Rock"
+            android:textColor="#8c0606"
+            android:textSize="20sp"/>
 
 
     </RelativeLayout>
 
     <RadioGroup
+        android:id="@+id/rdgGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/movieLay"
         android:layout_marginLeft="45dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="25dp"
-        android:orientation="horizontal"
-        android:id="@+id/rdgGroup"
-        android:layout_below="@+id/movieLay">
+        android:orientation="horizontal">
 
         <RadioButton
+            android:id="@+id/male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Male"
-            android:textSize="20sp"
-            android:id="@+id/male"/>
+            android:textSize="20sp"/>
 
         <RadioButton
+            android:id="@+id/female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Female"
-            android:textSize="20sp"
-            android:textColor="#8c0606"
             android:layout_marginLeft="10dp"
-            android:id="@+id/female"/>
+            android:text="Female"
+            android:textColor="#8c0606"
+            android:textSize="20sp"/>
 
         <RadioButton
+            android:id="@+id/hidden"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hidden"
-            android:textSize="20sp"
-            android:textColor="#6e059c"
             android:layout_marginLeft="10dp"
             android:checked="true"
-            android:id="@+id/hidden"/>
+            android:text="Hidden"
+            android:textColor="#6e059c"
+            android:textSize="20sp"/>
 
 
     </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="save"
+        android:textColor="#0db307"
+        android:textSize="30sp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/rdgGroup"
+        android:layout_marginTop="50dp"
+        android:id="@+id/save"
+        android:onClick="saveClicked"/>
+
+    <ProgressBar
+        android:id="@+id/pb"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:max="200"
+        android:visibility="gone"
+        android:layout_below="@+id/save"
+        android:layout_marginTop="50dp"/>
 
 </RelativeLayout>

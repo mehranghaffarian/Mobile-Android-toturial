@@ -1,8 +1,11 @@
 package com.example.hello;
 
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -13,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     private CheckBox j, r, p;
     private RadioGroup rdgGroup;
+    private ProgressBar pb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,5 +56,24 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "you have chosen female", Toast.LENGTH_SHORT).show();
             }
         });
+
+        pb = findViewById(R.id.pb);
+    }
+
+    public void saveClicked(View view) {
+        Toast.makeText(MainActivity.this, "saving attributes", Toast.LENGTH_SHORT).show();
+        pb.setVisibility(View.VISIBLE);
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 20; i++) {
+                    pb.incrementProgressBy(20);
+                    SystemClock.sleep(500);
+                }
+            }
+        });
+
+        t.start();
     }
 }
