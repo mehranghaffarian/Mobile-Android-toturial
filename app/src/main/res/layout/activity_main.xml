@@ -3,10 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <Spinner
+        android:id="@+id/carsSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/newImage"
-        android:src="@mipmap/funnyicon"/>
+        android:layout_centerHorizontal="true"/>
+
+    <ListView
+        android:id="@+id/carsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/carsSpinner"
+        android:layout_marginTop="40dp" />
 
 </RelativeLayout>
