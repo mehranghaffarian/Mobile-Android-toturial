@@ -43,12 +43,24 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> carsNewAdp = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, carsNewArray);
 
         lv.setAdapter(carsAdp);
-        spinner.setAdapter(carsAdp);
+        spinner.setAdapter(carsNewAdp);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(MainActivity.this, "you have chosen " + carsArray.get(i), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(MainActivity.this, "you have chosen " + carsNewArray.get(i), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                Toast.makeText(MainActivity.this, "you have chosen nothing", Toast.LENGTH_SHORT).show();
             }
         });
     }

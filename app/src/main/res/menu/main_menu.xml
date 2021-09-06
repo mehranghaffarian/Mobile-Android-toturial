@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="Settings"
+        android:id="@+id/settings"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_action_name"
+        />
+
+    <item
+        android:title="Help"
+        android:id="@+id/help"
+        app:showAsAction="never"
+        android:icon="@drawable/help"
+        />
+
+    <item
+        android:title="About"
+        android:id="@+id/about"
+        app:showAsAction="never"
+        android:icon="@drawable/about"
+        />
+
+</menu>
