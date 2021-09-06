@@ -1,67 +1,45 @@
 package com.example.hello;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    private ListView lv;
-    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
-        lv = findViewById(R.id.carsList);
-        spinner = findViewById(R.id.carsSpinner);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater mi = getMenuInflater();
+        mi.inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
-        ArrayList<String> carsArray = new ArrayList<>();
-        carsArray.add("BMW");
-        carsArray.add("Toyota");
-        carsArray.add("Samand");
-        carsArray.add("Hunda");
-        carsArray.add("Pride");
-
-        ArrayList<String> carsNewArray = new ArrayList<>();
-        carsNewArray.add("new BMW");
-        carsNewArray.add("new Toyota");
-        carsNewArray.add("new Samand");
-        carsNewArray.add("new Hunda");
-        carsNewArray.add("new Pride");
-
-        ArrayAdapter<String> carsAdp = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, carsArray);
-        ArrayAdapter<String> carsNewAdp = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, carsNewArray);
-
-        lv.setAdapter(carsAdp);
-        spinner.setAdapter(carsNewAdp);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(MainActivity.this, "you have chosen " + carsArray.get(i), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(MainActivity.this, "you have chosen " + carsNewArray.get(i), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(MainActivity.this, "you have chosen nothing", Toast.LENGTH_SHORT).show();
-            }
-        });
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        if(item.getItemId() == R.id.help) {
+            Toast.makeText(MainActivity.this, "heeeeelp", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(item.getItemId() == R.id.about) {
+            Toast.makeText(MainActivity.this, "abooooooooout", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else if(item.getItemId() == R.id.settings) {
+            Toast.makeText(MainActivity.this, "settttttttings", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else
+            return super.onOptionsItemSelected(item);
     }
 }
