@@ -1,45 +1,43 @@
 package com.example.hello;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 
 public class MainActivity extends AppCompatActivity {
+    private FloatingActionButton fab;
+    private RelativeLayout rl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater mi = getMenuInflater();
-        mi.inflate(R.menu.main_menu, menu);
-        return true;
-    }
+        fab = findViewById(R.id.floating_add);
+        rl = findViewById(R.id.mainn_layout);
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item){
-        if(item.getItemId() == R.id.help) {
-            Toast.makeText(MainActivity.this, "heeeeelp", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(item.getItemId() == R.id.about) {
-            Toast.makeText(MainActivity.this, "abooooooooout", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else if(item.getItemId() == R.id.settings) {
-            Toast.makeText(MainActivity.this, "settttttttings", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        else
-            return super.onOptionsItemSelected(item);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(rl, "dummmy snackbar", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("dummier Toast", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(MainActivity.this, "dummier toast created", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setTextColor(getResources().getColor(android.R.color.holo_blue_bright))
+                        .setBackgroundTint(getResources().getColor(R.color.medium_dark))
+                        .setActionTextColor(getResources().getColor(android.R.color.holo_green_dark))
+                        .show();
+            }
+        });
     }
 }
