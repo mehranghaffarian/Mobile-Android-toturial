@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/contactView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="20dp"
+    android:background="#33000000"
+    android:padding="10dp"
+    app:cardCornerRadius="10dp"
+    android:backgroundTint="#92DC84"
+    android:layout_margin="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/contactName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/app_name"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/contactEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:layout_below="@+id/contactName"
+        android:layout_marginTop="10dp"
+        android:text="Email"
+        android:textSize="20sp"/>
+        
+        <ImageView
+            android:id="@+id/contactImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/contactEmail"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/art"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
