@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Practice1</string>
+    <string name="Male">Male</string>
+    <string name="None">None</string>
+    <string name="Female">Female</string>
+    <string name="Confirm_Password">Confirm Password</string>
+    <string name="Password">Password</string>
+    <string name="Email">Email</string>
+    <string name="Name">Name</string>
+    <string name="Gender">Gender</string>
+    <string name="GenderChoice">Gender:</string>
+    <string name="CountryChoice">Country:</string>
+    <string name="Show_password">Show password</string>
+</resources>

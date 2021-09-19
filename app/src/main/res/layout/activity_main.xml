@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:layout_marginTop="10dp"
+    tools:context=".MainActivity"
+    android:id="@+id/registrationLayout">
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/Name"
+        android:textSize="20sp"
+        android:layout_marginTop="100dp"
+        android:id="@+id/userName"/>
+
+    <EditText
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/Email"
+        android:layout_marginStart="5dp"
+        android:layout_alignBaseline="@+id/userName"
+        android:textSize="20sp"
+        android:layout_toEndOf="@+id/userName"
+        android:id="@+id/userEmail"/>
+
+    <EditText
+        android:id="@+id/userPass"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_below="@+id/userName"
+        android:layout_marginTop="50dp"
+        android:hint="@string/Password"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/userConfirmPass"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_below="@+id/userEmail"
+        android:layout_alignBaseline="@+id/userPass"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@+id/userPass"
+        android:hint="@string/Confirm_Password"
+        android:textSize="20sp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userConfirmPass"
+        android:layout_alignParentEnd="true"
+        android:text="@string/Show_password"
+        android:id="@+id/showPass"/>
+
+    <androidx.constraintlayout.utils.widget.MotionLabel
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/GenderChoice"
+        android:layout_below="@+id/userPass"
+        android:layout_marginTop="65dp"
+        android:layout_marginStart="20dp"
+        android:id="@+id/genderLabel"/>
+
+    <RadioGroup
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userConfirmPass"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="100dp"
+        android:orientation="horizontal"
+        android:id="@+id/genders">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Male"
+            android:textSize="15sp"
+            android:id="@+id/male"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Female"
+            android:layout_marginStart="10dp"
+            android:textSize="15sp"
+            android:id="@+id/female"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/None"
+            android:layout_marginStart="10dp"
+            android:textSize="15sp"
+            android:id="@+id/none"
+            android:checked="true"/>
+    </RadioGroup>
+
+    <androidx.constraintlayout.utils.widget.MotionLabel
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/CountryChoice"
+        android:layout_below="@+id/genderLabel"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/genders"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="100dp"
+        android:id="@+id/countries"/>
+
+
+
+</RelativeLayout>
