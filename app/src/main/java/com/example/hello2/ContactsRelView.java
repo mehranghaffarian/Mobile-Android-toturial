@@ -12,9 +12,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -46,12 +47,13 @@ public class ContactsRelView extends RecyclerView.Adapter<ContactsRelView.ViewHo
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, contacts.get(viewHolder.getAdapterPosition()) + " selected", Toast.LENGTH_SHORT).show();
+                viewHolder.contactName.setTypeface(ResourcesCompat.getFont(context, R.font.fantasy));
             }
         });
-        Glide.with(context)
-                .asBitmap()
-                .load(contacts.get(i).getImageUrl())
-                .into(viewHolder.contactImage);
+//        Glide.with(context)
+//                .asBitmap()
+//                .load(contacts.get(i).getImageUrl())
+//                .into(viewHolder.contactImage);
     }
 
     public void setContacts(ArrayList<Contact> contacts) {

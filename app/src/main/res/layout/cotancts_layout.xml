@@ -21,7 +21,6 @@
         android:layout_height="wrap_content"
         android:paddingStart="5dp"
         android:layout_centerHorizontal="true"
-        android:text="@string/app_name"
         android:textSize="20sp"/>
 
     <TextView
@@ -31,7 +30,6 @@
         android:paddingStart="5dp"
         android:layout_below="@+id/contactName"
         android:layout_marginTop="10dp"
-        android:text="Email"
         android:textSize="20sp"/>
         
         <ImageView
@@ -41,6 +39,7 @@
             android:layout_below="@+id/contactEmail"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:src="@mipmap/art"/>
 
     </RelativeLayout>
