@@ -2,121 +2,166 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registrationLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:layout_marginTop="10dp"
-    tools:context=".MainActivity"
-    android:id="@+id/registrationLayout">
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="150dp"
+        android:layout_height="130dp"
+        android:src="@mipmap/art"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Pic_image"
+        android:textSize="20sp"
+        android:backgroundTint="@color/green"
+        android:layout_toEndOf="@+id/image"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"/>
 
     <EditText
+        android:id="@+id/userName"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
         android:hint="@string/Name"
-        android:textSize="20sp"
-        android:layout_marginTop="100dp"
-        android:id="@+id/userName"/>
+        android:textSize="20sp"/>
 
     <EditText
+        android:id="@+id/userEmail"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:hint="@string/Email"
-        android:layout_marginStart="5dp"
         android:layout_alignBaseline="@+id/userName"
-        android:textSize="20sp"
+        android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/userName"
-        android:id="@+id/userEmail"/>
+        android:hint="@string/Email"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/userPass"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:layout_below="@+id/userName"
         android:layout_marginTop="50dp"
         android:hint="@string/Password"
+        android:inputType="textPassword"
         android:textSize="20sp" />
 
     <EditText
         android:id="@+id/userConfirmPass"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:layout_below="@+id/userEmail"
         android:layout_alignBaseline="@+id/userPass"
         android:layout_marginStart="5dp"
         android:layout_marginTop="50dp"
         android:layout_toEndOf="@+id/userPass"
         android:hint="@string/Confirm_Password"
+        android:inputType="textPassword"
         android:textSize="20sp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/at_least_5_letters"
+        android:layout_marginStart="40dp"
+        android:layout_below="@+id/userPass"/>
+
     <CheckBox
+        android:id="@+id/showPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/userConfirmPass"
         android:layout_alignParentEnd="true"
-        android:text="@string/Show_password"
-        android:id="@+id/showPass"/>
+        android:text="@string/Show_password"/>
 
     <androidx.constraintlayout.utils.widget.MotionLabel
+        android:id="@+id/genderLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/GenderChoice"
         android:layout_below="@+id/userPass"
-        android:layout_marginTop="65dp"
         android:layout_marginStart="20dp"
-        android:id="@+id/genderLabel"/>
+        android:layout_marginTop="65dp"
+        android:text="@string/GenderChoice"/>
 
     <RadioGroup
+        android:id="@+id/genders"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/userConfirmPass"
-        android:layout_marginTop="50dp"
         android:layout_marginStart="100dp"
-        android:orientation="horizontal"
-        android:id="@+id/genders">
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
 
         <RadioButton
+            android:id="@+id/male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Male"
-            android:textSize="15sp"
-            android:id="@+id/male"/>
+            android:textSize="15sp"/>
 
         <RadioButton
+            android:id="@+id/female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="@string/Female"
-            android:layout_marginStart="10dp"
-            android:textSize="15sp"
-            android:id="@+id/female"/>
+            android:textSize="15sp"/>
 
         <RadioButton
+            android:id="@+id/none"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/None"
             android:layout_marginStart="10dp"
-            android:textSize="15sp"
-            android:id="@+id/none"
-            android:checked="true"/>
+            android:checked="true"
+            android:text="@string/None"
+            android:textSize="15sp"/>
     </RadioGroup>
 
     <androidx.constraintlayout.utils.widget.MotionLabel
+        android:id="@+id/countriesLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/CountryChoice"
         android:layout_below="@+id/genderLabel"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:text="@string/CountryChoice"/>
 
     <Spinner
+        android:id="@+id/countries"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/genders"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="100dp"
-        android:id="@+id/countries"/>
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="25dp"
+        android:entries="@array/countries"/>
 
+    <Button
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/countriesLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/Register"/>
 
+    <CheckBox
+        android:id="@+id/agree"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/genderLabel"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/countriesLabel"
+        android:text="@string/agreement"
+        android:textColor="@color/blue"/>
 
 </RelativeLayout>

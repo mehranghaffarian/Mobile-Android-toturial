@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Practice1</string>
+    <string name="app_name">Smile3</string>
     <string name="Male">Male</string>
     <string name="None">None</string>
     <string name="Female">Female</string>
@@ -11,4 +11,15 @@
     <string name="GenderChoice">Gender:</string>
     <string name="CountryChoice">Country:</string>
     <string name="Show_password">Show password</string>
+    <string name="Register">Register</string>
+    <string name="agreement">I agree</string>
+    <string name="at_least_5_letters">at least 5 letters</string>
+    <string name="Pic_image">Pic image</string>
+
+    <array name="countries">
+        <item>CHOOSE</item>
+        <item>USA</item>
+        <item>IRI</item>
+        <item>UK</item>
+    </array>
 </resources>
