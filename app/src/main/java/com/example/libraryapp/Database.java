@@ -3,6 +3,7 @@ package com.example.libraryapp;
 import java.util.ArrayList;
 
 public class Database {
+    private Category category;
     private ArrayList<Book> allBooks;
     private ArrayList<Book> currentBooks;
     private ArrayList<Book> wishlist;
@@ -10,6 +11,15 @@ public class Database {
     private ArrayList<Book> haveRead;
 
     private static Database database;
+
+    public enum Category {
+        ALL,
+        FAVORITES,
+        WISHLIST,
+        CURRENTLY_READING,
+        HAVE_READ,
+        ABOUT,
+    }
 
     private Database() {
         allBooks = new ArrayList<>();
@@ -33,7 +43,7 @@ public class Database {
     }
 
     public static Database getDatabase() {
-        if(null == database)
+        if (null == database)
             database = new Database();
 
         return database;
@@ -60,10 +70,96 @@ public class Database {
     }
 
     public Book findBook(int bookId) {
-        for(Book b : allBooks)
-            if(b.getId() == bookId)
+        for (Book b : allBooks)
+            if (b.getId() == bookId)
                 return b;
 
         return null;
+    }
+
+    public boolean hasRead(Book b) {
+        for (Book book : haveRead)
+            if (book.getId() == b.getId())
+                return true;
+
+        return false;
+    }
+
+    public ArrayList<Book> getBooks() {
+        if (category == Category.ALL)
+            return allBooks;
+        if (category == Category.WISHLIST)
+            return wishlist;
+        if (category == Category.HAVE_READ)
+            return haveRead;
+        if (category == Category.FAVORITES)
+            return favorites;
+        if (category == Category.CURRENTLY_READING)
+            return currentBooks;
+
+        return null;
+    }
+
+    public boolean addToHaveRead(Book b) {
+        return b != null && haveRead.add(b);
+    }
+
+    public boolean inWishlist(Book b) {
+        for (Book book : wishlist)
+            if (book.getId() == b.getId())
+                return true;
+
+        return false;
+    }
+
+    public boolean addToWishlist(Book b) {
+        return b != null && wishlist.add(b);
+    }
+
+    public boolean isFavorite(Book b) {
+        for (Book book : favorites)
+            if (book.getId() == b.getId())
+                return true;
+
+        return false;
+    }
+
+    public boolean addToFavorites(Book b) {
+        return b != null && favorites.add(b);
+    }
+
+    public boolean isReading(Book b) {
+        for (Book book : currentBooks)
+            if (book.getId() == b.getId())
+                return true;
+
+        return false;
+    }
+
+    public boolean addToCurrentlyReading(Book b) {
+        return b != null && currentBooks.add(b);
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public String getCategoryName() {
+        if (category == Category.ALL)
+            return "All books";
+        if (category == Category.WISHLIST)
+            return "Wishlist";
+        if (category == Category.HAVE_READ)
+            return "Have read books";
+        if (category == Category.FAVORITES)
+            return "Favorite books";
+        if (category == Category.CURRENTLY_READING)
+            return "Currently reading books";
+
+        return "About";
     }
 }

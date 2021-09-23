@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class AllBooks extends AppCompatActivity {
+    private TextView category;
     private RecyclerView allBooksRecView;
     private BookViewAdap bookViewAdap;
 
@@ -23,12 +25,15 @@ public class AllBooks extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_all_books);
 
+        category = findViewById(R.id.category);
+        category.setText(Database.getDatabase().getCategoryName());
+
         allBooksRecView = findViewById(R.id.allBooksRecView);
         bookViewAdap = new BookViewAdap(this);
 
+        bookViewAdap.setBooks(Database.getDatabase().getBooks());
+
         allBooksRecView.setAdapter(bookViewAdap);
         allBooksRecView.setLayoutManager(new LinearLayoutManager(this));
-
-        bookViewAdap.setBooks(Database.getDatabase().getAllBooks());
     }
 }

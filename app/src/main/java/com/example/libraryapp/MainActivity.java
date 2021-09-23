@@ -20,12 +20,61 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
+        Database.getDatabase();
+
         initializeUI();
 
+        setListeners();
+    }
+
+    private void setListeners() {
         allBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Database.getDatabase().setCategory(Database.Category.ALL);
+
                 startActivity(new Intent(MainActivity.this, AllBooks.class));
+            }
+        });
+        haveReadBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Database.getDatabase().setCategory(Database.Category.HAVE_READ);
+
+                startActivity(new Intent(MainActivity.this, AllBooks.class));
+            }
+        });
+        favorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Database.getDatabase().setCategory(Database.Category.FAVORITES);
+
+                startActivity(new Intent(MainActivity.this, AllBooks.class));
+            }
+        });
+        currentBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Database.getDatabase().setCategory(Database.Category.CURRENTLY_READING);
+
+                startActivity(new Intent(MainActivity.this, AllBooks.class));
+            }
+        });
+        wishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Database.getDatabase().setCategory(Database.Category.WISHLIST);
+
+                startActivity(new Intent(MainActivity.this, AllBooks.class));
+            }
+        });
+
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Database.getDatabase().setCategory(Database.Category.ABOUT);
+
+                //TODO: creating the about activity
             }
         });
     }

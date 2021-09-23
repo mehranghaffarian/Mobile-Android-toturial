@@ -8,4 +8,5 @@
     <string name="add_to_wishlist">Add to wishlist</string>
     <string name="add_to_have_read">Add to have read</string>
     <string name="title">Title :</string>
+    <string name="something_went_wrong">Something went wrong</string>
 </resources>
