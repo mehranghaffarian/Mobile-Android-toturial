@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:id="@+id/parent"
+    android:layout_marginTop="10dp"
+    app:cardElevation="10dp">
+
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/generalInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/bookImage"
+                android:layout_width="200dp"
+                android:layout_height="240dp"
+                android:src="@mipmap/art" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:fontFamily="@font/fantasy"
+                android:text="@string/book_name"
+                android:id="@+id/bookName"
+                android:layout_below="@id/bookImage"
+                android:layout_centerHorizontal="true"
+                android:textSize="18sp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/bookName"
+                android:layout_below="@id/bookImage"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/down_arrow"
+                android:id="@+id/downArrow"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@+id/generalInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/hiddenRelLayout">
+
+            <TextView
+                android:id="@+id/constraintAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/author"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/authorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/constraintAuthor"
+                android:layout_alignBaseline="@+id/constraintAuthor"
+                android:layout_marginStart="5dp"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:id="@+id/shortDec"
+                android:layout_below="@+id/authorName"
+                android:textSize="16sp"/>
+
+            <ImageView
+                android:id="@+id/upArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/shortDec"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/up_arrow"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
