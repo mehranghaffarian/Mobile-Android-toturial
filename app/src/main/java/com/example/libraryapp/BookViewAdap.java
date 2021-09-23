@@ -1,5 +1,6 @@
 package com.example.libraryapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
@@ -40,7 +41,7 @@ public class BookViewAdap extends RecyclerView.Adapter<BookViewAdap.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, @SuppressLint("RecyclerView") int i) {
         Log.d(TAG, "onBindViewHolder: started");
 
         viewHolder.bookName.setText(books.get(i).getTitle());
@@ -53,7 +54,7 @@ public class BookViewAdap extends RecyclerView.Adapter<BookViewAdap.ViewHolder>{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(c, SingleBook.class);
-                intent.putExtra("index", i);
+                intent.putExtra("index", books.get(i).getId());
 
                 c.startActivity(intent);
             }

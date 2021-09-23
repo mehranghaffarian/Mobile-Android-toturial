@@ -2,6 +2,7 @@ package com.example.libraryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -9,7 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Glide;
+//import com.bumptech.glide.util.Util;
 
 public class SingleBook extends AppCompatActivity {
     private TextView bookTitle, authorName, pages, shortDec, longDec;
@@ -26,9 +28,18 @@ public class SingleBook extends AppCompatActivity {
 
         initializeViews();
 
-        Book b = ;
+        Intent intent = getIntent();
 
-        importData(b);
+        if (intent != null) {
+            int bookId = intent.getIntExtra("index", -1);
+
+            if (bookId != -1) {
+                Book b = Database.getDatabase().findBook(bookId);
+
+                if(b != null)
+                    importData(b);
+            }
+        }
     }
 
     private void importData(Book b) {
@@ -38,7 +49,7 @@ public class SingleBook extends AppCompatActivity {
         pages.setText(String.valueOf(b.getPages()));
         longDec.setText(b.getLongDec());
 
-        Glide.with(this).asBitmap().load(b.getImageURL()).into(bookImage);
+//        Glide.with(this).asBitmap().load(b.getImageURL()).into(bookImage);
     }
 
     private void initializeViews() {

@@ -58,4 +58,12 @@ public class Database {
     public ArrayList<Book> getHaveRead() {
         return haveRead;
     }
+
+    public Book findBook(int bookId) {
+        for(Book b : allBooks)
+            if(b.getId() == bookId)
+                return b;
+
+        return null;
+    }
 }
