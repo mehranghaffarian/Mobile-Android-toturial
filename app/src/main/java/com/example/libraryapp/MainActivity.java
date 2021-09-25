@@ -1,7 +1,9 @@
 package com.example.libraryapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
+        overridePendingTransition(R.anim.moving_in, R.anim.moving_out);
 
         Database.getDatabase();//for initializing the arraylists
 
@@ -73,8 +77,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Database.getDatabase().setCategory(Database.Category.ABOUT);
-
-                //TODO: creating the about activity
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("About");
+                builder.setMessage("Do you want to visit our website?");
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(MainActivity.this, WebsiteActivity.class));
+                    }
+                });
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                builder.create().show();
             }
         });
     }
@@ -86,5 +103,12 @@ public class MainActivity extends AppCompatActivity {
         wishlist = findViewById(R.id.wishlist);
         haveReadBooks = findViewById(R.id.haveRead);
         about = findViewById(R.id.about);
+    }
+
+    @Override
+    public void finish(){
+        super.finish();
+
+        overridePendingTransition(R.anim.moving_out, R.anim.moving_in);
     }
 }

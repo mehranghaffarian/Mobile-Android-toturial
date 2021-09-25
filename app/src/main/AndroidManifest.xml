@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Platform.MaterialComponents.Light">
         <activity
+            android:name=".WebsiteActivity"
+            android:exported="true" />
+        <activity
             android:name=".SingleBook"
             android:exported="true" />
         <activity
