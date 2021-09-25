@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
-    android:id="@+id/parent"
     android:layout_marginTop="10dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="10dp">
 
     <RelativeLayout
@@ -25,33 +25,33 @@
                 android:src="@mipmap/art" />
 
             <TextView
+                android:id="@+id/bookName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:fontFamily="@font/fantasy"
-                android:text="@string/book_name"
-                android:id="@+id/bookName"
                 android:layout_below="@id/bookImage"
                 android:layout_centerHorizontal="true"
-                android:textSize="18sp"/>
+                android:fontFamily="@font/fantasy"
+                android:text="@string/book_name"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <ImageView
+                android:id="@+id/downArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/bookName"
                 android:layout_below="@id/bookImage"
+                android:layout_alignBaseline="@+id/bookName"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/down_arrow"
-                android:id="@+id/downArrow"/>
+                android:src="@drawable/down_arrow" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_below="@+id/generalInfo"
+            android:id="@+id/hiddenRelLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:id="@+id/hiddenRelLayout">
+            android:layout_below="@+id/generalInfo"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/constraintAuthor"
@@ -65,17 +65,17 @@
                 android:id="@+id/authorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/constraintAuthor"
                 android:layout_alignBaseline="@+id/constraintAuthor"
                 android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/constraintAuthor"
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/shortDec"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:id="@+id/shortDec"
                 android:layout_below="@+id/authorName"
+                android:layout_marginStart="5dp"
                 android:textSize="16sp"/>
 
             <ImageView
@@ -85,6 +85,17 @@
                 android:layout_below="@+id/shortDec"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/up_arrow"/>
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/shortDec"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="2dp"
+                android:layout_toStartOf="@+id/upArrow"
+                android:src="@drawable/delete"/>
+
 
         </RelativeLayout>
 

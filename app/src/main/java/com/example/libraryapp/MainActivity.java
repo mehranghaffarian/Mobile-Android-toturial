@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        Database.getDatabase();
+        Database.getDatabase();//for initializing the arraylists
 
         initializeUI();
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Database.getDatabase().setCategory(Database.Category.ALL);
 
-                startActivity(new Intent(MainActivity.this, AllBooks.class));
+                startActivity(new Intent(MainActivity.this, BookCategory.class));
             }
         });
         haveReadBooks.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Database.getDatabase().setCategory(Database.Category.HAVE_READ);
 
-                startActivity(new Intent(MainActivity.this, AllBooks.class));
+                startActivity(new Intent(MainActivity.this, BookCategory.class));
             }
         });
         favorites.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Database.getDatabase().setCategory(Database.Category.FAVORITES);
 
-                startActivity(new Intent(MainActivity.this, AllBooks.class));
+                startActivity(new Intent(MainActivity.this, BookCategory.class));
             }
         });
         currentBooks.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Database.getDatabase().setCategory(Database.Category.CURRENTLY_READING);
 
-                startActivity(new Intent(MainActivity.this, AllBooks.class));
+                startActivity(new Intent(MainActivity.this, BookCategory.class));
             }
         });
         wishlist.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Database.getDatabase().setCategory(Database.Category.WISHLIST);
 
-                startActivity(new Intent(MainActivity.this, AllBooks.class));
+                startActivity(new Intent(MainActivity.this, BookCategory.class));
             }
         });
 

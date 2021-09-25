@@ -19,6 +19,7 @@ public class Database {
         CURRENTLY_READING,
         HAVE_READ,
         ABOUT,
+        NONE,
     }
 
     private Database() {
@@ -29,17 +30,19 @@ public class Database {
         favorites = new ArrayList<>();
 
         addData();
+
+        category = Category.NONE;
     }
 
     private void addData() {
         String longDes = "this is the long dec blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah";
 
-        allBooks.add(new Book(1, "first book", "Jack London", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
-        allBooks.add(new Book(2, "first", "me", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
-        allBooks.add(new Book(3, "first", "me", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
-        allBooks.add(new Book(4, "first", "me", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
-        allBooks.add(new Book(5, "first", "me", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
-        allBooks.add(new Book(6, "first", "me", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
+        allBooks.add(new Book(1, "first", "first Jack London", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
+        allBooks.add(new Book(2, "second", "second Jack London", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
+        allBooks.add(new Book(3, "third", "third Jack London", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
+        allBooks.add(new Book(4, "fourth", "fourth Jack London", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
+        allBooks.add(new Book(5, "fifth", "fifth Jack London", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
+        allBooks.add(new Book(6, "sixth", "sixth Jack London", "https://bayrockbayrock.files.wordpress.com/2015/06/1q84-cover.jpg", "this is the first", longDes, 520));
     }
 
     public static Database getDatabase() {
@@ -159,7 +162,29 @@ public class Database {
             return "Favorite books";
         if (category == Category.CURRENTLY_READING)
             return "Currently reading books";
+        if(category == Category.ABOUT)
+            return "About";
 
-        return "About";
+        return "None";
+    }
+
+    public boolean deleteBook(Book b) {
+        if(category == Category.ALL){
+            currentBooks.remove(b);
+            wishlist.remove(b);
+            favorites.remove(b);
+            haveRead.remove(b);
+            return allBooks.remove(b);
+        }
+        else if(category == Category.CURRENTLY_READING)
+            return currentBooks.remove(b);
+        else if(category == Category.WISHLIST)
+            return wishlist.remove(b);
+        else if(category == Category.FAVORITES)
+            return favorites.remove(b);
+        else if(category == Category.HAVE_READ)
+            return haveRead.remove(b);
+
+        return false;
     }
 }

@@ -9,4 +9,5 @@
     <string name="add_to_have_read">Add to have read</string>
     <string name="title">Title :</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="no_book_has_been_added">No book has been added</string>
 </resources>

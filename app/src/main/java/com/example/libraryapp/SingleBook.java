@@ -35,15 +35,16 @@ public class SingleBook extends AppCompatActivity {
 
         if (intent != null) {
             int bookId = intent.getIntExtra("index", -1);
-            System.out.println("**********" + bookId);
+
             if (bookId != -1) {
                 b = Database.getDatabase().findBook(bookId);
 
-                System.out.println("*****************" + b);
-                if(b != null)
+                if (b != null)
                     importData(b);
             }
-        }
+        } else
+            Toast.makeText(SingleBook.this, "Something went wrong try again", Toast.LENGTH_SHORT).show();
+
         handleAddToHaveRead(b);
         handleAddToWishlist(b);
         handleAddToFavorites(b);
@@ -51,64 +52,80 @@ public class SingleBook extends AppCompatActivity {
     }
 
     private void handleAddToHaveRead(Book b) {
-        if(Database.getDatabase().hasRead(b)){
+        if (Database.getDatabase().hasRead(b)) {
             haveRead.setVisibility(View.GONE);
-        }
-        else
+        } else
             haveRead.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(Database.getDatabase().addToHaveRead(b))
+                    if (Database.getDatabase().addToHaveRead(b)) {
                         Toast.makeText(SingleBook.this, "Added successfully", Toast.LENGTH_SHORT).show();
-                    else
+
+                        haveRead.setVisibility(View.GONE);
+                        Database.getDatabase().setCategory(Database.Category.FAVORITES);
+
+                        startActivity(new Intent(SingleBook.this, BookCategory.class));
+                    } else
                         Toast.makeText(SingleBook.this, "Something went wrong try again", Toast.LENGTH_SHORT).show();
                 }
             });
     }
 
     private void handleAddToWishlist(Book b) {
-        if(Database.getDatabase().inWishlist(b)){
+        if (Database.getDatabase().inWishlist(b)) {
             wishlist.setVisibility(View.GONE);
-        }
-        else
+        } else
             wishlist.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(Database.getDatabase().addToWishlist(b))
+                    if (Database.getDatabase().addToWishlist(b)) {
                         Toast.makeText(SingleBook.this, "Added successfully", Toast.LENGTH_SHORT).show();
-                    else
+
+                        wishlist.setVisibility(View.GONE);
+                        Database.getDatabase().setCategory(Database.Category.WISHLIST);
+
+                        startActivity(new Intent(SingleBook.this, BookCategory.class));
+                    } else
                         Toast.makeText(SingleBook.this, "Something went wrong try again", Toast.LENGTH_SHORT).show();
                 }
             });
     }
 
     private void handleAddToFavorites(Book b) {
-        if(Database.getDatabase().isFavorite(b)){
+        if (Database.getDatabase().isFavorite(b)) {
             favorites.setVisibility(View.GONE);
-        }
-        else
+        } else
             favorites.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(Database.getDatabase().addToFavorites(b))
+                    if (Database.getDatabase().addToFavorites(b)) {
                         Toast.makeText(SingleBook.this, "Added successfully", Toast.LENGTH_SHORT).show();
-                    else
+
+                        favorites.setVisibility(View.GONE);
+                        Database.getDatabase().setCategory(Database.Category.FAVORITES);
+
+                        startActivity(new Intent(SingleBook.this, BookCategory.class));
+                    } else
                         Toast.makeText(SingleBook.this, "Something went wrong try again", Toast.LENGTH_SHORT).show();
                 }
             });
     }
 
     private void handleAddToReading(Book b) {
-        if(Database.getDatabase().isReading(b)){
+        if (Database.getDatabase().isReading(b)) {
             currentReading.setVisibility(View.GONE);
-        }
-        else
+        } else
             currentReading.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(Database.getDatabase().addToCurrentlyReading(b))
+                    if (Database.getDatabase().addToCurrentlyReading(b)) {
                         Toast.makeText(SingleBook.this, "Added successfully", Toast.LENGTH_SHORT).show();
-                    else
+
+                        currentReading.setVisibility(View.GONE);
+                        Database.getDatabase().setCategory(Database.Category.CURRENTLY_READING);
+
+                        startActivity(new Intent(SingleBook.this, BookCategory.class));
+                    } else
                         Toast.makeText(SingleBook.this, "Something went wrong try again", Toast.LENGTH_SHORT).show();
                 }
             });

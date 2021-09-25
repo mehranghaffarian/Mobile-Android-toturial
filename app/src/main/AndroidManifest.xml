@@ -16,7 +16,7 @@
             android:name=".SingleBook"
             android:exported="true" />
         <activity
-            android:name=".AllBooks"
+            android:name=".BookCategory"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
