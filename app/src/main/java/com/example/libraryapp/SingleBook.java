@@ -62,7 +62,7 @@ public class SingleBook extends AppCompatActivity {
                         Toast.makeText(SingleBook.this, "Added successfully", Toast.LENGTH_SHORT).show();
 
                         haveRead.setVisibility(View.GONE);
-                        Database.getDatabase().setCategory(Database.Category.FAVORITES);
+                        Database.getDatabase().setCategory(Database.Category.HAVE_READ);
 
                         startActivity(new Intent(SingleBook.this, BookCategory.class));
                     } else

@@ -12,5 +12,13 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowAnimationStyle">@style/customAnimation</item>
+    </style>
+    
+    <style name="customAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/moving_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/moving_out</item>
+        <item name="android:activityCloseExitAnimation">@anim/moving_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/moving_in</item>
     </style>
 </resources>

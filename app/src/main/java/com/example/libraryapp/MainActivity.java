@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        overridePendingTransition(R.anim.moving_in, R.anim.moving_out);
-
         Database.getDatabase();//for initializing the arraylists
 
         initializeUI();
@@ -103,12 +101,5 @@ public class MainActivity extends AppCompatActivity {
         wishlist = findViewById(R.id.wishlist);
         haveReadBooks = findViewById(R.id.haveRead);
         about = findViewById(R.id.about);
-    }
-
-    @Override
-    public void finish(){
-        super.finish();
-
-        overridePendingTransition(R.anim.moving_out, R.anim.moving_in);
     }
 }

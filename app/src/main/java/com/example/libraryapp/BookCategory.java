@@ -48,10 +48,10 @@ public class BookCategory extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Database.getDatabase().setCategory(Database.Category.NONE);
+
         Intent intent = new Intent(BookCategory.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-
-        Database.getDatabase().setCategory(Database.Category.NONE);
     }
 }
