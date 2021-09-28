@@ -12,7 +12,7 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="Lat :"
         android:textAllCaps="false"
         android:textSize="18sp"
@@ -69,29 +69,39 @@
 
     <TextView
         android:id="@+id/address"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:text="TextView"
+        android:text="Address :"
+        android:textAllCaps="false"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/speed" />
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
+        android:id="@+id/updates"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="451dp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:text="Updates :"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+        android:id="@+id/sensor"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="18dp"
-        tools:layout_editor_absoluteY="529dp" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:text="Sensor :"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updates" />
 
     <TextView
         android:id="@+id/lat_value"
@@ -143,42 +153,66 @@
         app:layout_constraintTop_toTopOf="@+id/speed" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/update_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="110dp"
-        tools:layout_editor_absoluteY="448dp" />
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/updates"
+        app:layout_constraintTop_toTopOf="@+id/updates" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/sensor_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="535dp" />
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/sensor"
+        app:layout_constraintTop_toTopOf="@+id/sensor" />
 
-    <Switch
-        android:id="@+id/switch1"
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/location_updates"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Switch"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="415dp" />
+        android:layout_height="10dp"
+        android:layout_marginTop="30dp"
+        android:checked="true"
+        android:text="Location Updates"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/updates"
+        app:layout_constraintTop_toTopOf="@+id/update_value" />
 
-    <Switch
-        android:id="@+id/switch2"
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/save_power"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Switch"
-        tools:layout_editor_absoluteX="261dp"
-        tools:layout_editor_absoluteY="485dp" />
+        android:layout_height="10dp"
+        android:layout_marginTop="30dp"
+        android:checked="false"
+        android:text="Save Power"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/sensor"
+        app:layout_constraintTop_toTopOf="@+id/sensor_value" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="409dp"
         android:layout_height="1dp"
+        android:layout_marginTop="50dp"
         android:background="?android:attr/listDivider"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="372dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address" />
+
+    <TextView
+        android:id="@+id/address_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/address"
+        app:layout_constraintTop_toTopOf="@+id/address" />
 </androidx.constraintlayout.widget.ConstraintLayout>
