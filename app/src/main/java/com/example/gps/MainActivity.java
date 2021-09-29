@@ -6,7 +6,10 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,10 +17,16 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.io.IOException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_FINE_LOCATION = 50;
@@ -29,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private LocationRequest lr;
     private FusedLocationProviderClient flpc;
+    private LocationCallback lc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +47,17 @@ public class MainActivity extends AppCompatActivity {
 
         initializeElements();
 
-        lr = new LocationRequest();
+        lr = LocationRequest.create();
         setLocationRequestValues();
+
+        lc = new LocationCallback() {
+            @Override
+            public void onLocationResult(@NonNull LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+
+                updateUIElements(locationResult.getLastLocation());
+            }
+        };
 
         setListeners();
 
@@ -64,6 +83,48 @@ public class MainActivity extends AppCompatActivity {
         lr.setPriority(lr.PRIORITY_BALANCED_POWER_ACCURACY);
     }
 
+    private void setListeners() {
+        save_power.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (save_power.isChecked()) {
+                    lr.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+                    sensor_value.setText("High accuracy with GPS");
+                } else {
+                    lr.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+                    sensor_value.setText("Using towers and WIFI");
+                }
+            }
+        });
+        location_updates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (location_updates.isChecked())
+                    startFindingLocation();
+                else
+                    finishFindingLocation();
+            }
+        });
+    }
+
+    @SuppressLint("MissingPermission")
+    private void startFindingLocation() {
+        location_updates.setText("Finding the location");
+        flpc.requestLocationUpdates(lr, lc, null);
+        updateGPS();
+    }
+
+    private void finishFindingLocation() {
+        lat_value.setText("Not tracking anymore");
+        lon_value.setText("Not tracking anymore");
+        altitude_value.setText("Not tracking anymore");
+        accuracy_value.setText("Not tracking anymore");
+        speed_value.setText("Not tracking anymore");
+        location_updates.setText("Not tracking anymore");
+
+        flpc.removeLocationUpdates(lc);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -82,8 +143,11 @@ public class MainActivity extends AppCompatActivity {
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             flpc.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
-                public void onSuccess(@NonNull Location location) {
-                    updateUIElements(location);
+                public void onSuccess(Location location) {
+                    if(location != null)
+                        updateUIElements(location);
+                    else
+                        Toast.makeText(MainActivity.this, "Something went wrong please try again", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -108,21 +172,14 @@ public class MainActivity extends AppCompatActivity {
             speed_value.setText(String.valueOf(location.getSpeed()));
         else
             speed_value.setText("Not available in your phone");
-    }
 
-    private void setListeners() {
-        save_power.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(save_power.isChecked()){
-                    lr.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-                    sensor_value.setText("High accuracy with GPS");
-                }
-                else {
-                    lr.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-                    sensor_value.setText("Using towers and WIFI");
-                }
-            }
-        });
+        try {
+            List<Address> addresses = (new Geocoder(this)).getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+
+            address_value.setText(addresses.get(0).getAddressLine(0));
+        } catch (IOException e) {
+            e.printStackTrace();
+            address_value.setText("Could not get the address");
+        }
     }
 }
