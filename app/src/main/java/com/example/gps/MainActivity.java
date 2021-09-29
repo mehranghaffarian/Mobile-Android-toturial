@@ -14,6 +14,8 @@ import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
         initializeElements();
@@ -121,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         accuracy_value.setText("Not tracking anymore");
         speed_value.setText("Not tracking anymore");
         location_updates.setText("Not tracking anymore");
+        address_value.setText("Not tracking anymore");
 
         flpc.removeLocationUpdates(lc);
     }
@@ -174,12 +180,13 @@ public class MainActivity extends AppCompatActivity {
             speed_value.setText("Not available in your phone");
 
         try {
-            List<Address> addresses = (new Geocoder(this)).getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            Geocoder g = new Geocoder(this);
+            List<Address> addresses = g.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 
             address_value.setText(addresses.get(0).getAddressLine(0));
         } catch (IOException e) {
-            e.printStackTrace();
             address_value.setText("Could not get the address");
+            e.printStackTrace();
         }
     }
 }

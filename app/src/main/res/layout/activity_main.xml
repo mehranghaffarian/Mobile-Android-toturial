@@ -168,7 +168,7 @@
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/location_updates"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="10dp"
         android:layout_marginTop="30dp"
         android:checked="true"
