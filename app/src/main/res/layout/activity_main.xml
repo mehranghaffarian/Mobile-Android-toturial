@@ -9,10 +9,10 @@
 
     <TextView
         android:id="@+id/lat"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Lat :"
         android:textAllCaps="false"
         android:textSize="18sp"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/lon"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/altitude"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
@@ -45,7 +45,7 @@
 
     <TextView
         android:id="@+id/speed"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
@@ -57,7 +57,7 @@
 
     <TextView
         android:id="@+id/accuracy"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
@@ -69,7 +69,7 @@
 
     <TextView
         android:id="@+id/address"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
@@ -81,10 +81,10 @@
 
     <TextView
         android:id="@+id/updates"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="Updates :"
         android:textAllCaps="false"
         android:textSize="18sp"
@@ -93,7 +93,7 @@
 
     <TextView
         android:id="@+id/sensor"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
@@ -160,9 +160,9 @@
         android:id="@+id/sensor_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Using towers and WIFI"
         android:textAllCaps="false"
         android:textSize="18sp"
-        android:text="Using towers and WIFI"
         app:layout_constraintStart_toEndOf="@+id/sensor"
         app:layout_constraintTop_toTopOf="@+id/sensor" />
 
@@ -194,7 +194,7 @@
         android:id="@+id/divider"
         android:layout_width="409dp"
         android:layout_height="1dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -208,4 +208,52 @@
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/address"
         app:layout_constraintTop_toTopOf="@+id/address" />
+
+    <Button
+        android:id="@+id/new_way_points"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="new way point"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wayPoints" />
+
+    <TextView
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:text="Way Points :"
+        app:layout_constraintTop_toBottomOf="@+id/save_power"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:id="@+id/wayPoints"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/parent"/>
+
+    <TextView
+        android:id="@+id/way_points_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/wayPoints"
+        app:layout_constraintStart_toEndOf="@+id/wayPoints"
+        app:layout_constraintTop_toTopOf="@+id/wayPoints" />
+
+    <Button
+        android:id="@+id/show_way_points_list"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Show way points list"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_way_points" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

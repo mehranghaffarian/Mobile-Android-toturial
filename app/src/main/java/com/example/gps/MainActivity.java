@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,12 +38,16 @@ public class MainActivity extends AppCompatActivity {
     private static final int DEFAULT_UPDATE_INTERVAL = 30;
     private static final int Fast_UPDATE_INTERVAL = 5;
 
-    private TextView lat_value, lon_value, altitude_value, accuracy_value, speed_value, update_value, sensor_value, address_value;
+    private TextView lat_value, lon_value, altitude_value, accuracy_value, speed_value, update_value, sensor_value, address_value, way_points_value;
     private SwitchCompat save_power, location_updates;
+    private Button new_point_list, show_way_points_list;
 
     private LocationRequest lr;
     private FusedLocationProviderClient flpc;
     private LocationCallback lc;
+
+    private Location currentLocation;
+    private ArrayList<Location> locations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initializeElements();
+
+        locations = new ArrayList<>();
 
         lr = LocationRequest.create();
         setLocationRequestValues();
@@ -80,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
         address_value = findViewById(R.id.address_value);
         save_power = findViewById(R.id.save_power);
         location_updates = findViewById(R.id.location_updates);
+        way_points_value = findViewById(R.id.way_points_value);
+
+        show_way_points_list = findViewById(R.id.show_way_points_list);
+        new_point_list = findViewById(R.id.new_way_points);
     }
 
     private void setLocationRequestValues() {
@@ -108,6 +121,21 @@ public class MainActivity extends AppCompatActivity {
                     startFindingLocation();
                 else
                     finishFindingLocation();
+            }
+        });
+        new_point_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyLocation myLocation = (MyLocation) getApplicationContext();
+                locations = myLocation.getLocations();
+                locations.add(currentLocation);
+            }
+        });
+        show_way_points_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ShowLocationsActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -150,8 +178,11 @@ public class MainActivity extends AppCompatActivity {
             flpc.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
-                    if(location != null)
+                    if(location != null) {
                         updateUIElements(location);
+
+                        currentLocation = location;
+                    }
                     else
                         Toast.makeText(MainActivity.this, "Something went wrong please try again", Toast.LENGTH_SHORT).show();
                 }
@@ -188,5 +219,7 @@ public class MainActivity extends AppCompatActivity {
             address_value.setText("Could not get the address");
             e.printStackTrace();
         }
+
+        way_points_value.setText(String.valueOf(locations.size()));
     }
 }
