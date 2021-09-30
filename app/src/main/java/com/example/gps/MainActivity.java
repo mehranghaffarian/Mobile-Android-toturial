@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView lat_value, lon_value, altitude_value, accuracy_value, speed_value, update_value, sensor_value, address_value, way_points_value;
     private SwitchCompat save_power, location_updates;
-    private Button new_point_list, show_way_points_list;
+    private Button new_point_list, show_way_points_list, show_map;
 
     private LocationRequest lr;
     private FusedLocationProviderClient flpc;
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         show_way_points_list = findViewById(R.id.show_way_points_list);
         new_point_list = findViewById(R.id.new_way_points);
+        show_map = findViewById(R.id.show_map);
     }
 
     private void setLocationRequestValues() {
@@ -135,6 +136,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ShowLocationsActivity.class);
+                startActivity(intent);
+            }
+        });
+        show_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MyMap.class);
                 startActivity(intent);
             }
         });

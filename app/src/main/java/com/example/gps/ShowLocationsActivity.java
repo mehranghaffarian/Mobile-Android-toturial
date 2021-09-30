@@ -2,10 +2,15 @@ package com.example.gps;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class ShowLocationsActivity extends AppCompatActivity {
     private ListView locationsList;
@@ -19,5 +24,10 @@ public class ShowLocationsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_locations);
 
         locationsList = findViewById(R.id.locationsList);
+
+        MyLocation myLocation = (MyLocation)getApplicationContext();
+        ArrayList<Location> locations = myLocation.getLocations();
+
+        locationsList.setAdapter(new ArrayAdapter<Location>(this, android.R.layout.simple_list_item_1, locations));
     }
 }
