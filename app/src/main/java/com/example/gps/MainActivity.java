@@ -130,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
                 MyLocation myLocation = (MyLocation) getApplicationContext();
                 locations = myLocation.getLocations();
                 locations.add(currentLocation);
+
+                way_points_value.setText(String.valueOf(locations.size()));
             }
         });
         show_way_points_list.setOnClickListener(new View.OnClickListener() {

@@ -1,5 +1,6 @@
 package com.example.gps;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.app.Application;
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.gps.databinding.ActivityMyMapBinding;
 
@@ -35,7 +37,7 @@ public class MyMap extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        locations = ((MyLocation)getApplicationContext()).getLocations();
+        locations = ((MyLocation) getApplicationContext()).getLocations();
     }
 
     /**
@@ -51,12 +53,23 @@ public class MyMap extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        LatLng lastLocation;
 
-        for(Location l : locations){
-            LatLng temp = new LatLng(l.getLatitude(), l.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(temp).title("Lat:" + l.getLatitude() + "Lon:" + l.getLongitude()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
+        if (locations.size() == 0)
+            lastLocation = new LatLng(-34, 151);
+        else
+            lastLocation = new LatLng(locations.get(locations.size() - 1).getLatitude(), locations.get(locations.size() - 1).getLongitude());
+
+        for (Location l : locations) {
+            if (l != null) {
+                LatLng temp = new LatLng(l.getLatitude(), l.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(temp).title("Lat: " + l.getLatitude() + "Lon: " + l.getLongitude()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
+            }
         }
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastLocation, 12.0f));
+
+        System.out.println("************" + locations.size());
     }
 }
