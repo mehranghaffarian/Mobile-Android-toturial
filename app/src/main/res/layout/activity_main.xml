@@ -15,9 +15,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
-        android:hint="Name"
+        android:hint="Userame"
         android:textAllCaps="false"
-        android:textSize="30sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/phone_number"
@@ -28,7 +28,7 @@
         android:layout_marginTop="10dp"
         android:hint="Phone Number"
         android:inputType="number"
-        android:textSize="30sp"/>
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/email"
@@ -38,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:hint="Email"
-        android:textSize="30sp"/>
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/register_user"
@@ -49,7 +49,7 @@
         android:layout_marginTop="10dp"
         android:text="Register User"
         android:textAllCaps="false"
-        android:textSize="30sp"/>
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/update_user"
@@ -60,7 +60,7 @@
         android:layout_marginTop="10dp"
         android:text="Update User"
         android:textAllCaps="false"
-        android:textSize="30sp"/>
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/delete_user"
@@ -71,7 +71,7 @@
         android:layout_marginTop="10dp"
         android:text="Delete User"
         android:textAllCaps="false"
-        android:textSize="30sp"/>
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/show_users"
@@ -82,6 +82,6 @@
         android:layout_marginTop="10dp"
         android:text="Show Users"
         android:textAllCaps="false"
-        android:textSize="30sp"/>
+        android:textSize="20sp"/>
 
 </RelativeLayout>
