@@ -10,12 +10,22 @@ public class MainActivity extends AppCompatActivity {
     private TextView name, phone_number, email;
     private Button register, update, delete, show;
 
+    private DB db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        db = new DB(this);
+
         initializeUIElements();
+
+        setListeners();
+    }
+
+    private void setListeners() {
+        
     }
 
     private void initializeUIElements() {
