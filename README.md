@@ -1,2 +1,2 @@
 # Mobile-Android-toturial
-learning android developing by android studio
+learning android developing in android studio mostly via youtube
