@@ -28,7 +28,7 @@
         android:layout_marginTop="10dp"
         android:hint="Phone Number"
         android:inputType="number"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/email"
@@ -38,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:hint="Email"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/register_user"
@@ -82,6 +82,6 @@
         android:layout_marginTop="10dp"
         android:text="Show Users"
         android:textAllCaps="false"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
 </RelativeLayout>

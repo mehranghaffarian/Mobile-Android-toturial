@@ -41,8 +41,11 @@ public class MainActivity extends AppCompatActivity {
                 if(username.length() > 3) {
                     if(phone.length() == 11) {
                         if(email_text.contains(".com") && email_text.contains("@")) {
-                            if(db.registerUser(username, phone, email_text))
+                            if(db.registerUser(username, phone, email_text)) {
                                 Toast.makeText(MainActivity.this, "User registered successfully.", Toast.LENGTH_SHORT).show();
+
+                                clearFields();
+                            }
                             else
                                 Toast.makeText(MainActivity.this, "something went wrong, user already exists or try again", Toast.LENGTH_SHORT).show();
                         }
@@ -66,8 +69,11 @@ public class MainActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(db.updateUser(name.getText().toString(), phone_number.getText().toString(), email.getText().toString()))
+                if(db.updateUser(name.getText().toString(), phone_number.getText().toString(), email.getText().toString())) {
                     Toast.makeText(MainActivity.this, "user updated successfully", Toast.LENGTH_SHORT).show();
+
+                    clearFields();
+                }
                 else
                     Toast.makeText(MainActivity.this, "something went wrong please check your information", Toast.LENGTH_SHORT).show();
             }
@@ -76,8 +82,11 @@ public class MainActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(db.deleteUser(name.getText().toString()))
+                if(db.deleteUser(name.getText().toString())) {
                     Toast.makeText(MainActivity.this, "user deleted successfully", Toast.LENGTH_SHORT).show();
+
+                    clearFields();
+                }
                 else
                     Toast.makeText(MainActivity.this, "something went wrong please check your information", Toast.LENGTH_SHORT).show();
             }
@@ -95,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
                     while (res.moveToNext()){
                         buffer.append("Username: " + res.getString(0));
-                        buffer.append("\nPhone number: " + res.getString(0));
-                        buffer.append("\nEmail: " + res.getString(0) + "\n\n");
+                        buffer.append("\nPhone number: " + res.getString(1));
+                        buffer.append("\nEmail: " + res.getString(2) + "\n\n");
                     }
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -108,6 +117,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void clearFields(){
+        name.setText("");
+        name.setTextColor(Color.rgb(0, 0, 0));
+        phone_number.setText("");
+        phone_number.setTextColor(Color.rgb(0, 0, 0));
+        email.setText("");
+        email.setTextColor(Color.rgb(0, 0, 0));
     }
 
     private void initializeUIElements() {

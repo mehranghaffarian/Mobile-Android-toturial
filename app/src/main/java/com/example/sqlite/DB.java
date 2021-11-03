@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DB extends SQLiteOpenHelper {
     public DB(Context context) {
-        super(context, "usersData", null, 1);
+        super(context, "usersInformation", null, 1);
     }
 
     @Override
@@ -35,21 +35,21 @@ public class DB extends SQLiteOpenHelper {
         return res != -1;
     }
 
-    public Boolean updateUser(String username, String phoneNumber, String email){
+    public Boolean updateUser(String userName, String phoneNumber, String email){
         SQLiteDatabase sd = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put("username", username);
+        cv.put("username", userName);
         cv.put("phoneNumber", phoneNumber);
         cv.put("email", email);
 
-        Cursor cursor = sd.rawQuery("Select * from usersInformation where username = ?", new String[]{username});
+        Cursor cursor = sd.rawQuery("Select * from usersInformation where username = ?", new String[]{userName});
 
-        sd.close();
         if(cursor.getCount() > 0) {
-            long res = sd.update("usersInformation", cv, "username = ?", new String[]{username});
+            long res = sd.update("usersInformation", cv, "username = ?", new String[]{userName});
 
             cursor.close();
+            sd.close();
             return res != -1;
         }
         return false;
@@ -60,11 +60,11 @@ public class DB extends SQLiteOpenHelper {
 
         Cursor cursor = sd.rawQuery("Select * from usersInformation where username = ?", new String[]{username});
 
-        sd.close();
         if(cursor.getCount() > 0) {
             long res = sd.delete("usersInformation", "username = ?", new String[]{username});
 
             cursor.close();
+            sd.close();
             return res != -1;
         }
         return false;
