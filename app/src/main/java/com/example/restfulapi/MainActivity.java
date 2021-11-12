@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private Button get_city_id, use_city_id, use_city_name;
     private EditText input;
     private ListView weather_reports;
+    private WeatherService ws;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         input = findViewById(R.id.city_input);
         weather_reports = findViewById(R.id.weather_list);
         parentView = findViewById(R.id.parentView);
+
+        ws = new WeatherService(parentView, MainActivity.this);
     }
 
     private void setListeners() {
@@ -59,40 +62,29 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 // Instantiate the RequestQueue.
 //                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                String url ="https://www.metaweather.com/api/location/search/?query=" + input.getText().toString();
-
-                JsonArrayRequest jarrReq = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                ws.getCityID(input.getText().toString(), new WeatherService.VolleyResponseListener() {
                     @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            String cityID = response.getJSONObject(0).getString("woeid");
+                    public void onError(String message) {
+                        Toast.makeText(MainActivity.this, "Something went wrong please try again.", Toast.LENGTH_SHORT).show();
+                    }
 
-                            Snackbar.make(parentView, "City ID is " + cityID, Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
-//                                @RequiresApi(api = Build.VERSION_CODES.M)
-                                @Override
-                                public void onClick(View view) {
+                    @Override
+                    public void onResponse(String cityID) {
+                        Snackbar.make(parentView, "City ID is " + cityID, Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
+                            //                                @RequiresApi(api = Build.VERSION_CODES.M)
+                            @Override
+                            public void onClick(View view) {
 //                                    ClipboardManager clipboard = (ClipboardManager)
 //                                            getSystemService(Context.CLIPBOARD_SERVICE);
 //                                    ClipData clip = ClipData.newPlainText("City ID", cityID);
 //
 //                                    Toast.makeText(MainActivity.this, "Copied!!", Toast.LENGTH_SHORT).show();
-                                }
-                            }).setBackgroundTint(Color.rgb(0, 0, 0))
-                              .setActionTextColor(Color.rgb(100, 255, 100))
-                              .show();
-//                            Toast.makeText(MainActivity.this, "City ID is " + response.getJSONObject(0).getString("woeid"), Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-                            Toast.makeText(MainActivity.this, "Something went wrong please try again.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Something went wrong, try again.", Toast.LENGTH_SHORT).show();
+                            }
+                        }).setBackgroundTint(Color.rgb(0, 0, 0))
+                                .setActionTextColor(Color.rgb(100, 255, 100))
+                                .show();
                     }
                 });
-                MySingleton.getInstance(MainActivity.this).addToRequestQueue(jarrReq);
-//                queue.add(jarrReq);
             }
         });
         use_city_id.setOnClickListener(new View.OnClickListener() {
