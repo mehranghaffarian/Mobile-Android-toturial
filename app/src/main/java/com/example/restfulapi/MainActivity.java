@@ -60,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
         get_city_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-// Instantiate the RequestQueue.
-//                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
                 ws.getCityID(input.getText().toString(), new WeatherService.VolleyResponseListener() {
                     @Override
                     public void onError(String message) {
@@ -70,19 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String cityID) {
-                        Snackbar.make(parentView, "City ID is " + cityID, Snackbar.LENGTH_INDEFINITE).setAction("OK", new View.OnClickListener() {
-                            //                                @RequiresApi(api = Build.VERSION_CODES.M)
-                            @Override
-                            public void onClick(View view) {
-//                                    ClipboardManager clipboard = (ClipboardManager)
-//                                            getSystemService(Context.CLIPBOARD_SERVICE);
-//                                    ClipData clip = ClipData.newPlainText("City ID", cityID);
-//
-//                                    Toast.makeText(MainActivity.this, "Copied!!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).setBackgroundTint(Color.rgb(0, 0, 0))
-                                .setActionTextColor(Color.rgb(100, 255, 100))
-                                .show();
+                        showSnackbar("City ID is " + cityID, "OK");
                     }
                 });
             }
@@ -90,17 +76,45 @@ public class MainActivity extends AppCompatActivity {
         use_city_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ws.getCityReportById(get_city_id.getText().toString(), new WeatherService.VolleyResponseListener() {
+                    @Override
+                    public void onError(String message) {
 
+                    }
+
+                    @Override
+                    public void onResponse(String cityID) {
+
+                    }
+                });
             }
         });
         use_city_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-//                ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
-//                String pasteData = item.getText().toString();
-//                Toast.makeText(MainActivity.this, pasteData, Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+    private void showSnackbar(String message, String action) {
+        Snackbar.make(parentView, message, Snackbar.LENGTH_INDEFINITE).setAction(action, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        }).setBackgroundTint(Color.rgb(0, 0, 0))
+                .setActionTextColor(Color.rgb(100, 255, 100))
+                .show();
+    }
 }
+/* copying to clipboard
+//                                    ClipboardManager clipboard = (ClipboardManager)
+//                                            getSystemService(Context.CLIPBOARD_SERVICE);
+//                                    ClipData clip = ClipData.newPlainText("City ID", cityID);
+//
+//                                    Toast.makeText(MainActivity.this, "Copied!!", Toast.LENGTH_SHORT).show();*/
+
+/*pasting from clipboard
+//                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+//                ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+//                String pasteData = item.getText().toString();
+//                Toast.makeText(MainActivity.this, pasteData, Toast.LENGTH_SHORT).show();*/
