@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         use_city_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ws.getCityReportById(get_city_id.getText().toString(), new WeatherService.VolleyResponseListener() {
+                ws.getCityReportById(input.getText().toString(), new WeatherService.VolleyResponseListener() {
                     @Override
                     public void onError(String message) {
 

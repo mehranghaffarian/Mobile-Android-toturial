@@ -42,12 +42,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/use_city_id"
-        android:hint="Please enter city name or id"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:hint="Please enter city name or id"
         android:textAllCaps="false"
-        android:textSize="15sp"
-        android:layout_marginTop="10dp"/>
+        android:textSize="15sp" />
 
     <ListView
         android:layout_width="match_parent"

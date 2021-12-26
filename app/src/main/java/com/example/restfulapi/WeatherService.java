@@ -66,20 +66,28 @@ public class WeatherService {
         JsonObjectRequest jor = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(mainContext, "correct", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mainContext, response.toString(), Toast.LENGTH_SHORT).show();
+
+                try {
+                    JSONArray report = response.getJSONArray("consolidated_weather");
+
+                    WeatherReport first_day = new WeatherReport();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(mainContext, "incorrect", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mainContext, "incorrect" + error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+        MySingleton.getInstance(mainContext).addToRequestQueue(jor);
+        return null;
+    }
+
+    public List<WeatherReport> getCityReportById(String name){
 
         return null;
     }
-//
-//    public list<WeatherReport> getCityReportById(String name){
-//
-//        return null;
-//    }
 }
